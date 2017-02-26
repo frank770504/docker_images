@@ -16,9 +16,17 @@ RUN apt-get install libsdl-image1.2-dev -y
 RUN apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers \
                     ros-kinetic-gazebo-ros-control ros-kinetic-laser-proc \
                     ros-kinetic-hector-gazebo-plugins -y
+RUN apt-get install vim -y
 RUN ln -s /usr/include/gazebo-7/gazebo/ /usr/include/gazebo
 RUN ln -s /usr/include/sdformat-4.0/sdf/ /usr/include/sdf
 RUN ln -s /usr/include/ignition/math2/ignition/math.hh usr/include/ignition/math.hh
 RUN ln -s /usr/include/ignition/math2/ignition/math usr/include/ignition/math
-#RUN rm -rf /var/lib/apt/lists/*
+
+LABEL com.nvidia.volumes.needed="nvidia_driver"
+ENV PATH /usr/local/nvidia/bin:${PATH}
+ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64:${LD_LIBRARY_PATH}
+#ENV QT_DEVICE_PIXEL_RATIO=1
+RUN rm -rf /var/lib/apt/lists/*
+RUN bash -c 'echo "source \$ROS_DIR/devel/setup.bash" >> /root/.bashrc'
+RUN bash -c 'echo "export QT_DEVICE_PIXEL_RATIO=1" >> /root/.bashrc'
 
