@@ -13,5 +13,12 @@ RUN apt-get install ros-kinetic-laser-proc -y
 RUN apt-get install ros-kinetic-move-base-msgs -y
 RUN apt-get install ros-kinetic-ecl -y
 RUN apt-get install libsdl-image1.2-dev -y
+RUN apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers \
+                    ros-kinetic-gazebo-ros-control ros-kinetic-laser-proc \
+                    ros-kinetic-hector-gazebo-plugins -y
+RUN ln -s /usr/include/gazebo-7/gazebo/ /usr/include/gazebo
+RUN ln -s /usr/include/sdformat-4.0/sdf/ /usr/include/sdf
+RUN ln -s /usr/include/ignition/math2/ignition/math.hh usr/include/ignition/math.hh
+RUN ln -s /usr/include/ignition/math2/ignition/math usr/include/ignition/math
 #RUN rm -rf /var/lib/apt/lists/*
 
