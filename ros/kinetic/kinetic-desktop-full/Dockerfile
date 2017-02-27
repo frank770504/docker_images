@@ -29,4 +29,6 @@ ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64:${LD_LIBRARY_P
 RUN rm -rf /var/lib/apt/lists/*
 RUN bash -c 'echo "source \$ROS_DIR/devel/setup.bash" >> /root/.bashrc'
 RUN bash -c 'echo "export QT_DEVICE_PIXEL_RATIO=1" >> /root/.bashrc'
+ENV ALIAS_DEF '"cd $ROS_DIR"'
+RUN bash -c 'echo "alias ros=${ALIAS_DEF}" >> /root/.bashrc'
 
